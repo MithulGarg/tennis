@@ -1,15 +1,13 @@
 package com.sports.tennis.controller;
 
 import com.sports.tennis.dao.GameRepository;
-import com.sports.tennis.dao.PlayerRepository;
 import com.sports.tennis.domain.Game;
-import com.sports.tennis.domain.Player;
+import com.sports.tennis.service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -17,6 +15,10 @@ public class GameController {
 
     @Autowired
     private GameRepository gameRepository;
+
+    @Autowired
+    private GameService gameService;
+
 
     @GetMapping("/game/{id}")
     public Game retrieveGame(@PathVariable long id) {
@@ -28,6 +30,12 @@ public class GameController {
     public ResponseEntity<Object> createGame(@RequestBody Game game) {
         Game savedGame = gameRepository.save(game);
         return new ResponseEntity<>(savedGame, HttpStatus.OK);
+    }
+
+    @GetMapping("/score/{gameId}/{playerId}")
+    public ResponseEntity<Object> score(@PathVariable long gameId, @PathVariable long playerId) {
+        gameService.scoreDriver(gameId, playerId);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @DeleteMapping("/game/{id}")
