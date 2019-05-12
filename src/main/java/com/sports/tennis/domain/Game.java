@@ -10,14 +10,14 @@ public class Game {
     @GeneratedValue
     private long id;
     private String score;
-    private Player player1;
-    private Player player2;
+    private String player1;
+    private String player2;
 
     public Game() {
         super();
     }
 
-    public Game(Long id, String score, Player player1, Player player2) {
+    public Game(Long id, String score, String player1, String player2) {
         super();
         this.id = id;
         this.score = score;
@@ -41,19 +41,19 @@ public class Game {
         this.score = score;
     }
 
-    public Player getPlayer1() {
+    public String getPlayer1() {
         return player1;
     }
 
-    public void setPlayer1(Player player1) {
+    public void setPlayer1(String player1) {
         this.player1 = player1;
     }
 
-    public Player getPlayer2() {
+    public String getPlayer2() {
         return player2;
     }
 
-    public void setPlayer2(Player player2) {
+    public void setPlayer2(String player2) {
         this.player2 = player2;
     }
 }
