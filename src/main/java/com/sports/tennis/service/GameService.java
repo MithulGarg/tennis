@@ -18,7 +18,6 @@ public class GameService {
     public Game scoreDriver(long gameId, long playerId) {
 
         Game game = gameRepository.findById(gameId).orElse(null);
-        game.setScore("Love-Love");
         Player player = playerRepository.findById(playerId).orElse(null);
 
         if (game != null && player != null) {
@@ -37,110 +36,146 @@ public class GameService {
         if (game.getScore().equals("Love-Love")) {
             if (player1Scored) {
                 game.setScore("15-Love");
+                gameRepository.saveAndFlush(game);
             } else {
                 game.setScore("Love-15");
+                gameRepository.saveAndFlush(game);
             }
         } else if (game.getScore().equals("15-Love")) {
             if (player1Scored) {
                 game.setScore("30-Love");
+                gameRepository.saveAndFlush(game);
             } else {
                 game.setScore("15-15");
+                gameRepository.saveAndFlush(game);
             }
         } else if (game.getScore().equals("Love-15")) {
             if (player1Scored) {
                 game.setScore("15-15");
+                gameRepository.saveAndFlush(game);
             } else {
                 game.setScore("Love-30");
+                gameRepository.saveAndFlush(game);
             }
         } else if (game.getScore().equals("30-Love")) {
             if (player1Scored) {
                 game.setScore("40-Love");
+                gameRepository.saveAndFlush(game);
             } else {
                 game.setScore("30-15");
+                gameRepository.saveAndFlush(game);
             }
         } else if (game.getScore().equals("Love-30")) {
             if (player1Scored) {
                 game.setScore("15-30");
+                gameRepository.saveAndFlush(game);
             } else {
                 game.setScore("Love-40");
+                gameRepository.saveAndFlush(game);
             }
         } else if (game.getScore().equals("40-Love")) {
             if (player1Scored) {
                 game.setScore("Player 1 Wins");
+                gameRepository.saveAndFlush(game);
             } else {
                 game.setScore("40-15");
+                gameRepository.saveAndFlush(game);
             }
         } else if (game.getScore().equals("Love-40")) {
             if (player1Scored) {
                 game.setScore("15-40");
+                gameRepository.saveAndFlush(game);
             } else {
                 game.setScore("Player 2 Wins");
+                gameRepository.saveAndFlush(game);
             }
         } else if (game.getScore().equals("15-15")) {
             if (player1Scored) {
                 game.setScore("30-15");
+                gameRepository.saveAndFlush(game);
             } else {
                 game.setScore("15-30");
+                gameRepository.saveAndFlush(game);
             }
         } else if (game.getScore().equals("30-30")) {
             if (player1Scored) {
                 game.setScore("40-30");
+                gameRepository.saveAndFlush(game);
             } else {
                 game.setScore("30-40");
+                gameRepository.saveAndFlush(game);
             }
         } else if (game.getScore().equals("15-30")) {
             if (player1Scored) {
                 game.setScore("30-30");
+                gameRepository.saveAndFlush(game);
             } else {
                 game.setScore("15-40");
+                gameRepository.saveAndFlush(game);
             }
         } else if (game.getScore().equals("30-15")) {
             if (player1Scored) {
                 game.setScore("40-15");
+                gameRepository.saveAndFlush(game);
             } else {
                 game.setScore("30-30");
+                gameRepository.saveAndFlush(game);
             }
         } else if (game.getScore().equals("15-40")) {
             if (player1Scored) {
                 game.setScore("30-40");
+                gameRepository.saveAndFlush(game);
             } else {
                 game.setScore("Player 2 Wins");
+                gameRepository.saveAndFlush(game);
             }
         } else if (game.getScore().equals("40-15")) {
             if (player1Scored) {
                 game.setScore("Player 1 Wins");
+                gameRepository.saveAndFlush(game);
             } else {
                 game.setScore("40-30");
+                gameRepository.saveAndFlush(game);
             }
         } else if (game.getScore().equals("30-40")) {
             if (player1Scored) {
                 game.setScore("Deuce");
+                gameRepository.saveAndFlush(game);
             } else {
                 game.setScore("Player 2 Wins");
+                gameRepository.saveAndFlush(game);
             }
         } else if (game.getScore().equals("40-30")) {
             if (player1Scored) {
                 game.setScore("Player 1 Wins");
+                gameRepository.saveAndFlush(game);
             } else {
                 game.setScore("Deuce");
+                gameRepository.saveAndFlush(game);
             }
         } else if (game.getScore().equals("Deuce")) {
             if (player1Scored) {
                 game.setScore("Player 1 Advantage");
+                gameRepository.saveAndFlush(game);
             } else {
                 game.setScore("Player 2 Advantage");
+                gameRepository.saveAndFlush(game);
             }
         } else if (game.getScore().equals("Player 1 Advantage")) {
             if (player1Scored) {
                 game.setScore("Player 1 Wins");
+                gameRepository.saveAndFlush(game);
             } else {
                 game.setScore("Deuce");
+                gameRepository.saveAndFlush(game);
             }
         } else if (game.getScore().equals("Player 2 Advantage")) {
             if (player1Scored) {
                 game.setScore("Deuce");
+                gameRepository.saveAndFlush(game);
             } else {
                 game.setScore("Player 2 Wins");
+                gameRepository.saveAndFlush(game);
             }
         }
         return game.getScore();

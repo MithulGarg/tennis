@@ -28,7 +28,8 @@ public class GameController {
     @PostMapping("/game")
     public ResponseEntity<Object> createGame(@RequestBody Game game) {
         Game savedGame = gameRepository.save(game);
-        savedGame.setScore("Love-Love");
+        game.setScore("Love-Love");
+        gameRepository.saveAndFlush(game);
         return new ResponseEntity<>(savedGame, HttpStatus.OK);
     }
 
