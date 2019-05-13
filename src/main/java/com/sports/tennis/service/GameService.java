@@ -23,16 +23,16 @@ public class GameService {
         if (game != null && player != null) {
             // check which player's score to increment
             if (game.getPlayer1().equals(player.getName())) {
-                game.setScore(incrementScore(true, game));
+                game.setScore(incrementScore(true, game, player));
             } else if (game.getPlayer2().equals(player.getName())) {
-                game.setScore(incrementScore(false, game));
+                game.setScore(incrementScore(false, game, player));
             }
         }
 
         return game;
     }
 
-    private String incrementScore(Boolean player1Scored, Game game) {
+    private String incrementScore(Boolean player1Scored, Game game, Player player) {
         if (game.getScore().equals("Love-Love")) {
             if (player1Scored) {
                 game.setScore("15-Love");
@@ -75,7 +75,7 @@ public class GameService {
             }
         } else if (game.getScore().equals("40-Love")) {
             if (player1Scored) {
-                game.setScore("Player 1 Wins");
+                game.setScore("Player 1: " + player.getName() + " Wins");
                 gameRepository.saveAndFlush(game);
             } else {
                 game.setScore("40-15");
@@ -86,7 +86,7 @@ public class GameService {
                 game.setScore("15-40");
                 gameRepository.saveAndFlush(game);
             } else {
-                game.setScore("Player 2 Wins");
+                game.setScore("Player 2: " + player.getName() + " Wins");
                 gameRepository.saveAndFlush(game);
             }
         } else if (game.getScore().equals("15-15")) {
@@ -126,12 +126,12 @@ public class GameService {
                 game.setScore("30-40");
                 gameRepository.saveAndFlush(game);
             } else {
-                game.setScore("Player 2 Wins");
+                game.setScore("Player 2: " + player.getName() + " Wins");
                 gameRepository.saveAndFlush(game);
             }
         } else if (game.getScore().equals("40-15")) {
             if (player1Scored) {
-                game.setScore("Player 1 Wins");
+                game.setScore("Player 1: " + player.getName() + " Wins");
                 gameRepository.saveAndFlush(game);
             } else {
                 game.setScore("40-30");
@@ -142,12 +142,12 @@ public class GameService {
                 game.setScore("Deuce");
                 gameRepository.saveAndFlush(game);
             } else {
-                game.setScore("Player 2 Wins");
+                game.setScore("Player 2: " + player.getName() + " Wins");
                 gameRepository.saveAndFlush(game);
             }
         } else if (game.getScore().equals("40-30")) {
             if (player1Scored) {
-                game.setScore("Player 1 Wins");
+                game.setScore("Player 1: " + player.getName() + " Wins");
                 gameRepository.saveAndFlush(game);
             } else {
                 game.setScore("Deuce");
@@ -163,7 +163,7 @@ public class GameService {
             }
         } else if (game.getScore().equals("Player 1 Advantage")) {
             if (player1Scored) {
-                game.setScore("Player 1 Wins");
+                game.setScore("Player 1: " + player.getName() + " Wins");
                 gameRepository.saveAndFlush(game);
             } else {
                 game.setScore("Deuce");
@@ -174,7 +174,7 @@ public class GameService {
                 game.setScore("Deuce");
                 gameRepository.saveAndFlush(game);
             } else {
-                game.setScore("Player 2 Wins");
+                game.setScore("Player 2: " + player.getName() + " Wins");
                 gameRepository.saveAndFlush(game);
             }
         }
