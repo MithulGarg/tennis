@@ -19,7 +19,6 @@ public class GameController {
     @Autowired
     private GameService gameService;
 
-
     @GetMapping("/game/{id}")
     public Game retrieveGame(@PathVariable long id) {
         Optional<Game> game = gameRepository.findById(id);
@@ -29,13 +28,14 @@ public class GameController {
     @PostMapping("/game")
     public ResponseEntity<Object> createGame(@RequestBody Game game) {
         Game savedGame = gameRepository.save(game);
+        savedGame.setScore("Love-Love");
         return new ResponseEntity<>(savedGame, HttpStatus.OK);
     }
 
-    @GetMapping("/score/{gameId}/{playerId}")
+    @PostMapping("/score/{gameId}/{playerId}")
     public ResponseEntity<Object> score(@PathVariable long gameId, @PathVariable long playerId) {
-        gameService.scoreDriver(gameId, playerId);
-        return new ResponseEntity<>(HttpStatus.OK);
+        Game updatedGame = gameService.scoreDriver(gameId, playerId);
+        return new ResponseEntity<>(updatedGame, HttpStatus.OK);
     }
 
     @DeleteMapping("/game/{id}")
